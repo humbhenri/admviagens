@@ -8,6 +8,15 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { VendasProvider } from '../providers/vendas/vendas';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import config from "./firebase.config"; //https://console.firebase.google.com/project/curso-pbh-ionic/overview?hl=pt-br
+import { AngularFireModule } from "angularfire2";
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { CadpacotesPageModule } from '../pages/cadpacotes/cadpacotes.module';
+import { PacotesProvider } from '../providers/pacotes/pacotes';
 
 @NgModule({
   declarations: [
@@ -18,6 +27,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule,
+    HttpClientModule,
+    AngularFireDatabaseModule,
+    CadpacotesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,7 +42,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    VendasProvider,
+    PacotesProvider
   ]
 })
 export class AppModule {}

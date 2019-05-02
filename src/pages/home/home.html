@@ -8,11 +8,17 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <div *ngFor="let venda of vendas">
+    <h2>{{ venda.data | date:'dd/MM/yyyy HH:mm' }}</h2>
+    <ion-list *ngFor="let pacote of venda.pacotes">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="pacote.pacote.imagem" />
+        </ion-avatar>
+        <h2>{{ pacote.pacote.titulo }}</h2>
+        <h3>R$ {{ pacote.pacote.valor }}</h3>
+        <ion-badge item-end>{{ pacote.quantidade }}</ion-badge>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
