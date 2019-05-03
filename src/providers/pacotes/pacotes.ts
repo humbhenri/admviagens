@@ -14,7 +14,7 @@ export class PacotesProvider {
   constructor(public http: HttpClient, public afd: AngularFireDatabase) {
   }
 
-  addPacote(pacote) {
+  addPacote(pacote: {}) {
     if (this.afd.list('pacotes').push(pacote)) {
       return true;
     }
