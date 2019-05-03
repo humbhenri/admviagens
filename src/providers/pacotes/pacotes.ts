@@ -39,4 +39,8 @@ export class PacotesProvider {
     return false;
   }
 
+  getPacotes() {
+    return this.afd.list('pacotes')
+  }
+
 }
