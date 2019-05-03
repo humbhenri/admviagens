@@ -186,6 +186,11 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.19.tgz#991df31d892a51414e0e544b5cff4216cfb04915"
   integrity sha512-U9e2dCB38mD2AvV/zAjghauwa0UX15Wt98iBgm8IOw8spluDxysx8UZFUhj38fu0iFXORVRBqseyK2wCxZIl5w==
 
+"@ionic-native/camera@4":
+  version "4.20.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/camera/-/camera-4.20.0.tgz#db236497f880bd1b832e4223485f99875fedc570"
+  integrity sha512-WnfQq8RV+7ezOqpCyNx9Xgpy7Y8TZehGLSxZXnCqCbFZ72CpC70Q5AV/eTIRGiKkotx2U6nUopYF+gTj1cunFA==
+
 "@ionic-native/core@~4.20.0":
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-4.20.0.tgz#5877f45136add6f04a4d744012d1fcdc3f634774"
@@ -985,6 +990,11 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
+
+cordova-plugin-camera@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.0.3.tgz#7373a5938318c86ccfd84e3713e2382d10fe076b"
+  integrity sha1-c3Olk4MYyGzP2E43E+I4LRD+B2s=
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"

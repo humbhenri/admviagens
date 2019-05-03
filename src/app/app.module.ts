@@ -18,6 +18,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 import { CadpacotesPageModule } from '../pages/cadpacotes/cadpacotes.module';
 import { PacotesProvider } from '../providers/pacotes/pacotes';
 
+import { Camera } from '@ionic-native/camera';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -44,7 +46,8 @@ import { PacotesProvider } from '../providers/pacotes/pacotes';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VendasProvider,
-    PacotesProvider
+    PacotesProvider,
+    Camera,
   ]
 })
 export class AppModule {}
