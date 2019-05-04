@@ -12,31 +12,26 @@ import firebase from 'firebase';
 @Injectable()
 export class PacotesProvider {
 
-  constructor(public http: HttpClient, public afd: AngularFireDatabase) {
+  constructor(
+    public http: HttpClient,
+    public afd: AngularFireDatabase) {
   }
 
-  addPacote(pacote: any) {
-    const novo = this.afd.list('pacotes').push(pacote);
-    if (novo) {
-      const id = novo.key;
-      const storage = firebase.storage();
-      const storageRef = storage.ref();
-      const filename = new Date().getTime() + '.png';
-      const localPath = pacote.imagem;
-      const fileType = 'image/png';
-      return storageRef.child(`pacotes/${id}/${filename}`)
-        .putString(localPath, 'base64', { contentType: fileType })
-        .then(savedPicture => {
-          savedPicture.ref.getDownloadURL().then(downloadURL => {
-            pacote.imagem = downloadURL;
-            if (this.afd.object(`pacotes/${id}`).update(pacote)) {
-              return true;
-            }
-            return false;
-          });
-        });
-    }
-    return false;
+  async addPacote(pacote: any) {
+    const val = await this.afd.list('pacotes').push(pacote);
+    console.log(JSON.stringify(val));
+    const id = val.key;
+    const storage = firebase.storage();
+    const storageRef = storage.ref();
+    const filename = new Date().getTime() + '.png';
+    const localPath = pacote.imagem;
+    const fileType = 'image/png';
+    const savedPicture = await storageRef.child(`pacotes/${id}/${filename}`)
+      .putString(localPath, 'base64', { contentType: fileType });
+    const url = await savedPicture.ref.getDownloadURL();
+    console.log(`img url = ${url}`);
+    pacote.imagem = url;
+    await this.afd.object(`pacotes/${id}`).update(pacote);
   }
 
   getPacotes() {

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, ToastController } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from "ionic-angular";
 import { PacotesProvider } from "../../providers/pacotes/pacotes";
 import { HomePage } from "../home/home";
 import { Camera, CameraOptions } from "@ionic-native/camera";
@@ -28,31 +28,37 @@ export class CadpacotesPage {
     public pacotesProvider: PacotesProvider,
     public toastCtrl: ToastController,
     public camera: Camera,
-  ) {}
+    public loadingCtrl: LoadingController) {}  
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad CadpacotesPage");
   }
 
   cadastrar() {
-    const ok = this.pacotesProvider.addPacote({
+    const loader = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loader.present();
+    this.pacotesProvider.addPacote({
       titulo: this.titulo,
       descricao: this.descricao,
       valor: this.valor,
       imagem: this.imagem
-    });
-    if (ok) {
+    }).then(() => {
       this.toastCtrl.create({
         message: 'Pacote cadastrado :)',
         duration: 3000
       }).present();
+      loader.dismiss();
       this.navCtrl.setRoot(HomePage);
-    } else {
+    }, (error) => {
+      console.log(error);
       this.toastCtrl.create({
         message: 'Erro ao cadastrar o pacote :<',
         duration: 3000
       }).present();
-    }
+      loader.dismiss();
+    });
   }
 
   getImagem() {
